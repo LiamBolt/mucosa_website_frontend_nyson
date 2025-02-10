@@ -1,0 +1,77 @@
+@baseUrl = http://localhost:8000/api
+@authToken = your_jwt_token_here
+
+### Get JWT Token
+POST {{baseUrl}}/token/
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "your_password"
+}
+
+### Refresh Token
+POST {{baseUrl}}/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "your_refresh_token_here"
+}
+
+### Get News Articles List
+GET {{baseUrl}}/news/
+Authorization: Bearer {{authToken}}
+
+### Get Single News Article
+GET {{baseUrl}}/news/1/
+Authorization: Bearer {{authToken}}
+
+### Create News Article
+POST {{baseUrl}}/news/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Test Article",
+    "excerpt": "This is a test article excerpt",
+    "content": "This is the main content of the test article.",
+    "category": 1,
+    "image": "https://example.com/image.jpg",
+    "image_caption": "Test Image Caption",
+    "image_credit": "Test Photographer"
+}
+
+### Update News Article
+PUT {{baseUrl}}/news/1/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Updated Test Article",
+    "excerpt": "This is an updated test article excerpt",
+    "content": "This is the updated main content of the test article.",
+    "category": 1,
+    "image": "https://example.com/image.jpg",
+    "image_caption": "Updated Test Image Caption",
+    "image_credit": "Updated Test Photographer"
+}
+
+### Delete News Article
+DELETE {{baseUrl}}/news/1/
+Authorization: Bearer {{authToken}}
+
+### Search News Articles
+GET {{baseUrl}}/news/?search=test
+Authorization: Bearer {{authToken}}
+
+### Filter by Category
+GET {{baseUrl}}/news/?category__slug=technology
+Authorization: Bearer {{authToken}}
+
+### Filter by Author
+GET {{baseUrl}}/news/?author__username=admin
+Authorization: Bearer {{authToken}}
+
+### Order by Published Date
+GET {{baseUrl}}/news/?ordering=-published_date
+Authorization: Bearer {{authToken}}
