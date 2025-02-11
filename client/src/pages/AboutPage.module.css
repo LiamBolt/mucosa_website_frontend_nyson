@@ -1,0 +1,563 @@
+.aboutPage {
+  padding: var(--spacing-xl) 0;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #ced4da, #ffffff, #aab0b6);
+  background-size: 200% 200%;
+  animation: gradientMove 50s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  margin-top : 90px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.pageTitle {
+  color: var(--color-secondary);
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pageDescription {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Vision & Mission Section */
+.visionMission {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.visionSection,
+.missionSection {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.visionSection h2,
+.missionSection h2 {
+  color: var(--color-secondary);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.visionSection p,
+.missionSection p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Team Section */
+.teamSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  color: var(--color-secondary);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teamMember {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teamMember:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.memberImage {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #f1f3f5, #e9ecef);
+}
+
+.memberImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.memberInfo {
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+.memberName {
+  color: var(--color-secondary);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.memberRole {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.5px;
+}
+
+.memberBio {
+  color: #4a5568;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid #edf2f7;
+}
+
+.socialLink {
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+}
+
+.socialLink:hover {
+  background: #edf2f7;
+  transform: translateY(-2px);
+}
+
+.socialLink img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.socialLink:hover img {
+  transform: translateY(-2px);
+}
+
+/* Impact Section */
+.impactSection {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg) 0;
+  background: var(--color-secondary-light);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.impactSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.impactSection .sectionTitle {
+  color: var(--color-white);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-xl);
+  padding: 0 var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.metric {
+  position: relative;
+  padding: var(--spacing-lg);
+}
+
+.metricContent {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric:hover .metricContent {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.metricIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--spacing-md);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.metricNumber {
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #f0f4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--spacing-sm);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.2;
+}
+
+.metricLabel {
+  font-size: 1.1rem;
+  color: var(--color-white);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* Contact Section */
+.contactSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.contactContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-xl);
+}
+
+.contactInfo {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contactInfo h3 {
+  color: var(--color-secondary);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.contactDetails {
+  margin-top: var(--spacing-lg);
+}
+
+.contactDetails p {
+  margin-bottom: var(--spacing-md);
+  color: #666;
+}
+
+.contactForm {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: var(--spacing-md);
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 2px solid #eee;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.submitButton {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  margin-top: var(--spacing-md);
+  color: #28a745;
+  text-align: center;
+}
+
+@media (max-width: var(--breakpoint-md)) {
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+
+  .visionMission {
+    grid-template-columns: 1fr;
+  }
+
+  .contactContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutPage {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .pageTitle {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .pageDescription {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  /* Vision & Mission Section */
+  .visionMission {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .visionSection,
+  .missionSection {
+    padding: var(--spacing-lg);
+  }
+
+  .visionSection h2,
+  .missionSection h2 {
+    font-size: 1.25rem;
+  }
+
+  .visionSection p,
+  .missionSection p {
+    font-size: 0.9rem;
+  }
+
+  /* Team Section */
+  .teamSection {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .teamMember {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .memberImage {
+    height: 200px;
+    position: relative;
+  }
+
+  .memberImage img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .memberInfo {
+    padding: var(--spacing-sm);
+  }
+
+  .memberName {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .memberRole {
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .memberBio {
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+  }
+
+  .socialLinks {
+    padding-top: var(--spacing-xs);
+  }
+
+  .socialLink img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Impact Section */
+  .impactSection {
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) 0;
+    border-radius: 12px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+
+  .metric {
+    padding: var(--spacing-md);
+  }
+
+  .metricContent {
+    padding: var(--spacing-lg);
+  }
+
+  .metricIcon {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+  }
+
+  .metricNumber {
+    font-size: 2.5rem;
+  }
+
+  .metricLabel {
+    font-size: 1rem;
+  }
+
+  /* Contact Section */
+  .contactSection {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .contactContainer {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .contactInfo {
+    padding: var(--spacing-lg);
+  }
+
+  .contactInfo h3 {
+    font-size: 1.25rem;
+  }
+
+  .contactDetails p {
+    font-size: 0.9rem;
+  }
+
+  .contactForm {
+    padding: var(--spacing-lg);
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    padding: var(--spacing-md);
+    font-size: 1rem;
+  }
+
+  .successMessage {
+    font-size: 0.9rem;
+  }
+}

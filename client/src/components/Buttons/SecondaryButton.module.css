@@ -1,0 +1,16 @@
+.secondaryButton {
+    background-color: transparent;
+    color: var(--color-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: 2px solid var(--color-white);
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+  }
+  
+  .secondaryButton:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }

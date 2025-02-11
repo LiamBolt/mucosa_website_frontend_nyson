@@ -1,0 +1,249 @@
+.newsPage {
+  padding: var(--spacing-xl) 0;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #ced4da, #ffffff, #aab0b6);
+  background-size: 200% 200%;
+  animation: gradientMove 50s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  margin-top : 90px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.pageTitle {
+  color: var(--color-secondary);
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pageDescription {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchBar {
+  margin-bottom: var(--spacing-xl);
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid #adb5bd;
+  border-radius: 18px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.filterSection {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--color-secondary-light);
+  border-radius: 15px;
+  font-size : 15px;
+  background: transparent;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterButton.active {
+  background: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.filterButton:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.newsCard {
+  background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.newsCard:hover {
+  transform: translateY(-4px);
+}
+
+.imageContainer {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 4px var(--spacing-sm);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.content {
+  padding: var(--spacing-lg);
+}
+
+.title {
+  color: var(--color-secondary);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+.excerpt {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.date {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.readMore {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.readMore:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.noResults {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: #666;
+}
+
+.loadMore {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+.loadMoreButton {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loadMoreButton:hover {
+  transform: translateY(-2px);
+  background: #7ac000;
+}
+
+@media (max-width: var(--breakpoint-md)) {
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+
+  .filterSection {
+    justify-content: center;
+  }
+
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+} 
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .pageDescription {
+    font-size: 1.0rem;
+  }
+
+  .filterButton {
+    font-size : 13px;
+  }
+}

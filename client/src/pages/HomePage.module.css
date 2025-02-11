@@ -1,0 +1,8 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage > section {
+  padding: var(--spacing-xl) var(--spacing-lg);
+} 

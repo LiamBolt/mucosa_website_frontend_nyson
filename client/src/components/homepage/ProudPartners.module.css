@@ -1,0 +1,155 @@
+.partnersSection {
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(to right, #ffffff, #e9ecef);
+}
+
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  color: var(--color-secondary);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-xl);
+  align-items: center;
+  justify-items: center;
+  margin: var(--spacing-xl) 0;
+}
+
+.partnerLogo {
+  width: 100%;
+  max-width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.partnerLogo:hover {
+  transform: translateY(-4px);
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cta {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  background: linear-gradient(to left, #a1e41c, #eafbc5, #e9ecef);
+  border-radius: 8px;
+}
+
+.ctaText {
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+}
+
+.ctaButton {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  background: #7ac000;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Different animation delays for each logo */
+.partnerLogo:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.partnerLogo:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.partnerLogo:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.partnerLogo:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.partnerLogo:nth-child(5) {
+  animation-delay: 2s;
+}
+
+@media (max-width: var(--breakpoint-md)) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .logosGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .partnerLogo {
+    max-width: 150px;
+    height: 75px;
+  }
+
+  .cta {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .logosGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}

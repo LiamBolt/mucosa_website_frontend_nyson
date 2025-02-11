@@ -1,0 +1,261 @@
+.footer {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+}
+
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.brandSection {
+  padding-right: var(--spacing-xl);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+}
+
+.logoText {
+  font-size: var(--font-size-2xl);
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.description {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.contactInfo {
+  margin-bottom: var(--spacing-lg);
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-gray-400);
+}
+
+.contactItem svg {
+  color: var(--color-primary);
+  width: 16px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  transition: all 0.3s ease;
+  color: var(--color-white);
+  font-size: var(--font-size-xl);
+}
+
+.socialLink:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  color: var(--color-secondary);
+}
+
+.socialLink img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.linksSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+}
+
+.linkColumn h3 {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.linkColumn ul {
+  list-style: none;
+  padding: 0;
+}
+
+.linkColumn li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.linkColumn a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.linkColumn a:hover {
+  color: var(--color-primary);
+}
+
+.contactColumn p {
+  color: #ccc;
+  margin-bottom: var(--spacing-sm);
+}
+
+.bottomBar {
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.legalLinks {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.legalLinks a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legalLinks a:hover {
+  color: var(--color-primary);
+}
+
+.divider {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .brandSection {
+    padding-right: 0;
+  }
+
+  .logo {
+    justify-content: flex-start;
+  }
+
+  .description {
+    text-align: left;
+  }
+
+  .contactInfo {
+    max-width: 400px;
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+
+  .socialLinks {
+    justify-content: flex-start;
+  }
+
+  .linksSection {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  .contactColumn {
+    grid-column: span 2;
+    text-align: left;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .legalLinks {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .linksSection {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .contactColumn {
+    grid-column: auto;
+  }
+
+  .logoImage {
+    height: 32px;
+  }
+
+  .logoText {
+    font-size: var(--font-size-xl);
+  }
+
+  .contactItem {
+    font-size: var(--font-size-sm);
+  }
+
+  .socialLink {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-lg);
+  }
+
+  .bottomBar {
+    font-size: var(--font-size-xs);
+  }
+
+  .legalLinks {
+    gap: var(--spacing-sm);
+  }
+
+  .divider {
+    margin: 0 var(--spacing-xs);
+  }
+}
+
+/* Add smooth transitions for better mobile experience */
+.mainContent,
+.linksSection,
+.bottomBar {
+  transition: all 0.3s ease-in-out;
+} 

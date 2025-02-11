@@ -1,0 +1,226 @@
+.projectsPage {
+    background: linear-gradient(to bottom, #ffffff, #d8dadd);
+    padding: var(--spacing-xl) 0;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: var(--breakpoint-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    margin-top: 90px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .pageTitle {
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .pageDescription {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .filters {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid #adb5bd;
+    border-radius: 18px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .searchInput:focus {
+    border-color: var(--color-primary);
+    outline: none;
+  }
+  
+  .categoryFilters {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+  
+  .categoryButton {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-secondary-light);
+    border-radius: 15px;
+    font-size: 15px;
+    background: transparent;
+    color: var(--color-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .categoryButton.active {
+    background: var(--color-secondary);
+    color: var(--color-white);
+  }
+  
+  .categoryButton:hover {
+    background: var(--color-secondary);
+    color: var(--color-white);
+  }
+  
+  .projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .projectCard {
+    background: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .projectCard:hover {
+    transform: translateY(-4px);
+  }
+  
+  .imageContainer {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+  }
+  
+  .projectImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #f0f0f0; /* Placeholder color */
+    transition: transform 0.3s ease;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(46, 49, 149, 0.5);
+    backdrop-filter: blur(1px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .imageContainer:hover .overlay {
+    opacity: 1;
+  }
+  
+  .imageContainer:hover .projectImage {
+    transform: scale(1.05);
+  }
+  
+  .links {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+  
+  .link {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+  }
+  
+  .link:hover {
+    transform: translateY(-2px);
+  }
+  
+  .content {
+    padding: var(--spacing-lg);
+  }
+  
+  .projectTitle {
+    color: var(--color-secondary);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .projectDescription {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+  
+  .techItem {
+    background: #f0f0f0;
+    color: var(--color-secondary);
+    padding: 4px var(--spacing-sm);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .creator {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .noResults {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: #666;
+  }
+  
+  @media (max-width: var(--breakpoint-md)) {
+    .pageTitle {
+      font-size: 2rem;
+    }
+  
+    .projectsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .pageTitle {
+      font-size: 2rem;
+    }
+  
+    .pageDescription {
+      font-size: 1rem;
+    }
+  
+    .categoryButton {
+      font-size: 13px;
+    }
+  }
