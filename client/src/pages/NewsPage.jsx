@@ -1,8 +1,8 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NewsPage.module.css';
+import { fetchNews } from '../services/newsService';
 import PrimaryButton from '../components/Buttons/PrimaryButton';
-import { newsItems } from '../data/newsitems';
 
 // Filter Component
 function NewsFilter({ categories, activeCategory, onCategoryChange }) {
@@ -15,28 +15,22 @@ function NewsFilter({ categories, activeCategory, onCategoryChange }) {
       >
         All
       </button>
-      {categories.length > 0 ? (
-        categories.map((category) => (
-          <button
-            key={category}
-            className={`${styles.filterButton} ${activeCategory === category ? styles.active : ''}`}
-            onClick={() => onCategoryChange(category)}
-            aria-label={`Filter by ${category}`}
-          >
-            {category}
-          </button>
-        ))
-      ) : (
-        <p className={styles.noCategories}>No categories available.</p>
-      )}
+      {categories.map((category) => (
+        <button
+          key={category}
+          className={`${styles.filterButton} ${activeCategory === category ? styles.active : ''}`}
+          onClick={() => onCategoryChange(category)}
+          aria-label={`Filter by ${category}`}
+        >
+          {category}
+        </button>
+      ))}
     </div>
   );
 }
 
 // News Card Component
-function NewsCard({ image, category, title, excerpt, date, author }) {
-  const formattedTitle = title.replace(/\s+/g, '-').toLowerCase();
-
+function NewsCard({ id, image, category, title, excerpt, date, author }) {
   return (
     <article className={styles.newsCard}>
       <div className={styles.imageContainer}>
@@ -53,7 +47,7 @@ function NewsCard({ image, category, title, excerpt, date, author }) {
           </div>
           <span className={styles.date}>{date}</span>
         </div>
-        <Link to={`/news/${formattedTitle}`} className={styles.readMoreLink}>
+        <Link to={`/news/${id}`} className={styles.readMoreLink}>
           <button className={styles.readMore} aria-label={`Read more about ${title}`}>
             Read More
           </button>
@@ -65,27 +59,75 @@ function NewsCard({ image, category, title, excerpt, date, author }) {
 
 // News Page Component
 function NewsPage() {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = ['Technology', 'Community', 'Events', 'Education', 'Career', 'Business', 'Entertainment'];
 
-  // Optimize filtering with useMemo
-  const filteredNews = useMemo(() => {
-    return newsItems.filter((item) => {
-      const matchesCategory = !activeCategory || item.category === activeCategory;
-      const matchesSearch =
-        !searchQuery ||
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
+  useEffect(() => {
+    const loadNews = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const params = {};
+        if (activeCategory) params.category = activeCategory;
+        if (searchQuery) params.search = searchQuery;
+        
+        const newsData = await fetchNews(params);
+        
+        // Validate that we received an array
+        if (!Array.isArray(newsData)) {
+          throw new Error('Invalid data format received from server');
+        }
+        
+        setNews(newsData);
+      } catch (err) {
+        console.error('Error loading news:', err);
+        setError(
+          err.response?.data?.message || 
+          'Failed to load news articles. Please try again later.'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadNews();
   }, [activeCategory, searchQuery]);
 
-  // Handle search input with useCallback to optimize performance
-  const handleSearchChange = useCallback((e) => {
-    setSearchQuery(e.target.value);
-  }, []);
+  // Render loading state
+  if (loading) {
+    return (
+      <div className={styles.newsPage}>
+        <div className={styles.container}>
+          <div className={styles.loading}>Loading news articles...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render error state
+  if (error) {
+    return (
+      <div className={styles.newsPage}>
+        <div className={styles.container}>
+          <div className={styles.error}>
+            <p>{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className={styles.retryButton}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.newsPage}>
@@ -97,25 +139,37 @@ function NewsPage() {
           </p>
         </header>
 
-        {/* Search Bar */}
         <div className={styles.searchBar}>
           <input
             type="text"
             placeholder="Search news..."
             value={searchQuery}
-            onChange={handleSearchChange}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className={styles.searchInput}
             aria-label="Search for news articles"
           />
         </div>
 
-        {/* Category Filter */}
-        <NewsFilter categories={categories} activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+        <NewsFilter 
+          categories={categories} 
+          activeCategory={activeCategory} 
+          onCategoryChange={setActiveCategory} 
+        />
 
-        {/* News Articles */}
         <div className={styles.newsGrid}>
-          {filteredNews.length > 0 ? (
-            filteredNews.map((news, index) => <NewsCard key={index} {...news} />)
+          {news.length > 0 ? (
+            news.map((newsItem) => (
+              <NewsCard
+                key={newsItem.id}
+                {...newsItem}
+                // Handle potentially nested category
+                category={
+                  typeof newsItem.category === 'object' 
+                    ? newsItem.category.name 
+                    : newsItem.category
+                }
+              />
+            ))
           ) : (
             <div className={styles.noResults}>
               <p>No news articles found matching your criteria.</p>
@@ -123,8 +177,7 @@ function NewsPage() {
           )}
         </div>
 
-        {/* Load More Button */}
-        {filteredNews.length > 0 && (
+        {news.length > 0 && (
           <div className={styles.loadMore}>
             <PrimaryButton>Load More Articles</PrimaryButton>
           </div>

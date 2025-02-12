@@ -1,17 +1,50 @@
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './NewsDetailPage.module.css';
-import { newsItems } from '../data/newsitems';
+import { fetchNewsDetail } from '../services/newsService';
 
 function NewsDetailPage() {
-  const { newsTitle } = useParams(); 
+  const { newsId } = useParams();
+  const navigate = useNavigate();
+  const [news, setNews] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Normalize the title for comparison
-  const formattedTitle = newsTitle.replace(/-/g, ' ').toLowerCase();
-  const news = newsItems.find((item) => item.title.toLowerCase() === formattedTitle);
+  useEffect(() => {
+    const loadNewsDetail = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchNewsDetail(newsId);
+        setNews(data);
+        setError(null);
+      } catch (err) {
+        setError('Failed to load article. Please try again later.');
+        if (err.response?.status === 404) {
+          navigate('/news', { replace: true });
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!news) {
-    return <p className={styles.error}>Article not found!</p>;
-  }
+    loadNewsDetail();
+  }, [newsId, navigate]);
+
+  if (loading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
+  if (!news) return null;
+
+  // Helper function to render content based on its type
+  const renderContent = (content) => {
+    if (Array.isArray(content)) {
+      return content.map((paragraph, index) => (
+        <p key={index} className={styles.paragraph}>
+          {paragraph}
+        </p>
+      ));
+    }
+    return <p className={styles.paragraph}>{content}</p>;
+  };
 
   return (
     <div className={styles.newsDetailPage}>
@@ -46,9 +79,7 @@ function NewsDetailPage() {
 
         <article className={styles.content}>
           {news.excerpt && <div className={styles.excerpt}>{news.excerpt}</div>}
-          {news.content && news.content.map((paragraph, index) => (
-            <p key={index} className={styles.paragraph}>{paragraph}</p>
-          ))}
+          {news.content && renderContent(news.content)}
         </article>
 
         {news.relatedArticles && news.relatedArticles.length > 0 && (
